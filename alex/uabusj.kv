@@ -1,0 +1,238 @@
+<Gerenciador@ScreenManager>:
+    JanelaPrincipal:
+    LoginAluno:
+    ErroUsuario:
+    ErroSenha:
+    RedefinirSenha:
+    Cadastrar:
+    ConcluirCadastro:
+    MainScreenAluno:
+
+
+<JanelaPrincipal>:
+    name: 'janelaprincipal'
+
+
+    FloatLayout:
+
+        
+    
+        Image:
+            source: 'UFRPE.png'
+            allow_stretch: True
+            size_hint: 0.5 ,0.5 
+            pos_hint: {'center_x': 0.5,'center_y': 0.65}
+
+        MDRoundFlatButton:
+            text: 'Administração'
+            pos_hint: {'center_x': 0.4,'center_y': 0.25}
+            size_hint: 0.1 ,0.1 
+      
+
+        MDRoundFlatButton:
+            text: 'Aluno'
+            pos_hint: {'center_x': 0.6,'center_y': 0.25}
+            size_hint: 0.15 ,0.1
+            on_release:
+                app.root.current = 'loginaluno'
+    
+
+
+<LoginAluno>:
+    name: 'loginaluno'
+
+    FloatLayout:
+
+        
+
+
+        Image:
+            source: 'Bus.png'
+       
+
+
+        MDIconButton:
+            icon: 'arrow-left'
+            on_release:
+                app.root.current = 'janelaprincipal'
+            pos_hint: {'center_x': 0.1,'center_y': 0.92}
+
+
+        MDTextField:
+            id: email
+            hint_text: 'E-mail\n'
+            icon_right: 'email'
+            multiline: False
+            size_hint: 0.5 ,0.1
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            
+            
+
+        MDTextField:
+            id: senha
+            hint_text: 'Senha\n'
+            multiline: False
+            password: True
+            pos_hint: {'center_x': 0.5,'center_y': 0.4}
+            size_hint: 0.5 ,0.1
+
+        MDIconButton:
+            icon: "eye-off"
+            theme_text_color: 'Hint'
+            pos_hint: {'center_x': 0.73,'center_y': 0.4}
+            on_release:
+                senha.password = False if senha.password is True else True
+            
+
+        MDRoundFlatButton:
+            text: 'Acessar'
+            color: (0,1,1,1)
+            size_hint: 0.1 ,0.1
+            pos_hint: {'center_x': 0.5,'center_y': 0.25}
+            on_release: root.login()
+
+
+        MDLabel:
+            text: 'UABusJ'
+            font_size: '30'
+            pos_hint: {'center_x': 0.94,'center_y': 0.85}
+        
+        MDLabel:
+            text: 'Não tem uma conta? '
+            pos_hint: {'center_x': 0.84,'center_y': 0.1}
+
+        MDTextButton:
+            text: 'CADASTRE-SE'
+            theme_text_color: 'Custom'
+            text_color: (25/255, 118/255, 209/255, 1)
+            pos_hint: {'center_x': 0.6,'center_y': 0.1}
+            on_release:
+                app.root.current = 'cadastrar'
+
+<Cadastrar>:
+    name: 'cadastrar'
+
+    FloatLayout:
+
+        MDIconButton:
+            icon: 'arrow-left'
+            on_release:
+                app.root.current = 'loginaluno'
+            pos_hint: {'center_x': 0.1,'center_y': 0.92}
+           
+
+            
+
+        MDTextField:
+            id: nome
+            hint_text: 'Digite seu nome:\n'
+            icon_right: 'account'
+            multiline: False
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            size_hint: 0.5 ,0.1
+
+        MDTextField:
+            id: email
+            hint_text: 'Digite seu e-mail:\n'
+            icon_right: 'email'
+            multiline: False
+            pos_hint: {'center_x': 0.5,'center_y': 0.4}
+            size_hint: 0.5 ,0.1
+
+        MDTextField:
+            id: senha
+            hint_text: 'Digite sua senha\n'
+            multiline: False
+            pos_hint: {'center_x': 0.5,'center_y': 0.3}
+            size_hint: 0.5 ,0.1
+        
+        MDIconButton:
+            icon: "eye-off"
+            theme_text_color: 'Hint'
+            pos_hint: {'center_x': 0.73,'center_y': 0.3}
+            on_release:
+                senha.password = False if senha.password is True else True
+
+        MDRoundFlatButton:
+            id: continuar
+            text: 'Continuar'
+            pos_hint: {'center_x': 0.5,'center_y': 0.15}
+            size_hint: 0.1 ,0.1
+            on_release: 
+                app.root.current = 'concluircadastro'
+              
+
+        MDLabel:
+            text: 'Confirme seus dados'
+            font_size: '50'
+            pos_hint: {'center_x': 0.7,'center_y': 0.7}
+                
+<ConcluirCadastro>:
+    name: 'concluircadastro'
+
+    FloatLayout:
+
+        Image:
+            source:'phone-outline.png'
+            allow_stretch: True
+            size_hint: 0.5 ,0.5 
+            pos_hint: {'center_x': 0.5,'center_y': 0.65}
+
+        MDIconButton:
+            icon: 'arrow-left'
+            on_release:
+                app.root.current = 'cadastrar'
+            pos_hint: {'center_x': 0.1,'center_y': 0.92}
+
+
+        MDTextField:
+            hint_text: 'Digite seu número de contato\n'
+            pos_hint: {'center_x': 0.5,'center_y': 0.3}
+            size_hint: 0.5 ,0.1
+        
+        MDRoundFlatButton:
+            id: confirmar
+            text: 'Confirmar'
+            pos_hint: {'center_x': 0.5,'center_y': 0.15}
+            size_hint: 0.1 ,0.1
+
+<MainScreenAluno>:
+    name: 'telaprincipalaluno'
+
+    MDBottomNavigation:
+        panel_color: "#000000"
+        text_color_active: "lightgrey"
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            icon: 'compass'
+            Image:
+                source:'imgm.jpg'
+                allow_stretch:True
+            MDLabel:
+                
+                BoxLayout:
+                    orientation: 'horizontal'
+                    
+                    Label:
+                        text: 'Rota1'
+                        size_hint_x: None
+                        size: self.texture_size
+                        pos_hint: {'right': 1}
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            icon: 'bus'
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            icon: 'bell'
+
+            MDLabel:
+                text: 'notificações, mudanças ou algo relacionado a rota'
+                halign: 'center'
+        MDBottomNavigationItem:
+            name: 'screen 4'
+            icon: 'cog'
+
+            MDLabel:
+                text: 'aqui colocaremos as configurações do app para alunos'
+                halign: 'center'
